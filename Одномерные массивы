@@ -1,0 +1,90 @@
+def StrToNums(Str):
+    temp = []
+    for n in Str.split():
+        temp.append(int(n))
+
+    return temp
+
+def F1():
+    nums = StrToNums(input("Введите числа: "))
+
+    print(nums[::-1])
+
+def F2():
+    nums = StrToNums(input("Введите числа: "))
+
+    print("Чётные -", nums[1::2])
+    print("Нечётные -", nums[::2])
+
+def F3():
+    nums = StrToNums(input("Введите числа: "))
+
+    chet = []
+    nechet = []
+
+    for n in nums:
+        if n%2 == 0 or n == 0:
+            chet.append(n)
+        else:
+            nechet.append(n)
+
+    print("Чётные -", len(chet))
+    print("Нечётные -", len(nechet))
+
+def F4():
+    nums = StrToNums(input("Введите числа: "))
+
+    nums.insert(0, nums[-1])
+    nums.pop(-1)
+
+    print(nums)
+
+def F5():
+    nums = StrToNums(input("Введите числа: "))
+    flag = True
+
+    for i,n in enumerate(nums):
+        if i == len(nums)-1: break
+
+        if n*2+1 != nums[i+1]:
+            flag = False
+            break
+
+    print(flag and "YES" or "NO")
+
+def F6():
+    nums = StrToNums(input("Введите числа: "))
+
+    lowest = abs(nums[0]-nums[1])
+    for i,n in enumerate(nums):
+        for j,v in enumerate(nums):
+            if i == j: continue
+
+            lowest = abs(n-v) < lowest and abs(n-v) or lowest
+
+    print(lowest)
+
+def F7():
+    nums = StrToNums(input("Введите числа: "))
+    minNum, maxNum = min(nums), max(nums)
+    def FindIndex(table, value):
+        indexs = []
+
+        for i,v in enumerate(table):
+            if v == value:
+                indexs.append(i)
+
+        return indexs
+    
+    minIndex = FindIndex(nums, minNum)
+    maxIndex = FindIndex(nums, maxNum)
+
+    for index in minIndex:
+        nums[index] = maxNum
+
+    for index in maxIndex:
+        nums[index] = minNum
+
+    print(nums)
+
+F7()
