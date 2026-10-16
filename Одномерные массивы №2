@@ -1,0 +1,101 @@
+def StrToNums(Str):
+    temp = []
+    for n in Str.split():
+        temp.append(int(n))
+
+    return temp
+
+def F1():
+    nums = StrToNums(input("Введите числа: "))
+    NoReply = []
+    MaxReply = 0
+
+    for num in nums:
+        if not num in NoReply:
+            NoReply.append(num)
+
+    for NRNum in NoReply:
+        Count = 0
+        for num in nums:
+            if NRNum == num: Count += 1
+
+        MaxReply = Count > MaxReply and Count or MaxReply
+    print(MaxReply)
+
+def F2():
+    nums = StrToNums(input("Введите числа: "))
+
+    flag = True
+    SORTED = sorted(nums)
+    for i, num in enumerate(SORTED):
+        if i+1 == len(SORTED): break
+
+        if i == 0 and num != 1:
+            flag = False
+        elif num+1 != SORTED[i+1]:
+            flag = False
+    print(flag)
+
+def F3():
+    nums = StrToNums(input("Введите числа: "))
+
+    MaxUpLen = 1
+    UpLen = 1
+    for i, num in enumerate(nums):
+        if i+1 == len(nums):
+            MaxUpLen = MaxUpLen < UpLen and UpLen or MaxUpLen
+            break
+
+        if num < nums[i+1]:
+            UpLen += 1
+        else:
+            UpLen = 1
+            MaxUpLen = MaxUpLen < UpLen and UpLen or MaxUpLen
+    print(MaxUpLen)
+
+def F4():
+    nums1 = StrToNums(input("Введите числа №1: "))
+    nums2 = StrToNums(input("Введите числа №2: "))
+
+    print(sorted(nums1 + nums2))
+
+def F5():
+    nums = StrToNums(input("Введите числа: "))
+
+    for i in range(len(nums)):
+        Current = nums[i]
+        MIN, MINindex = nums[i], 0
+
+        for j in range(i, len(nums)):
+            if nums[j] < MIN:
+                MIN = nums[j]
+                MINindex = j
+
+        if sorted(nums) == nums:
+            return print(nums)
+
+        nums[MINindex] = Current
+        nums[i] = MIN
+
+def F6():
+    nums = StrToNums(input("Введите числа: "))
+
+    for _ in range(len(nums)):
+        for i, num in enumerate(nums):
+            if i+1 == len(nums): break
+            if nums[i+1] < num:
+                nums[i] = nums[i+1]
+                nums[i+1] = num
+    print(nums)
+
+def F7():
+    nums = StrToNums(input("Введите числа: "))
+    SORTED = sorted(nums)
+    indexs = []
+
+    for sortNum in SORTED:
+        for i, num in enumerate(nums):
+            if num == sortNum:
+                indexs.append(i)
+                break
+    print(indexs)
