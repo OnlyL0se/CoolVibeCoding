@@ -1,0 +1,82 @@
+def F1():
+    fio = input('Введите фамилию, имя и отчество одной строкой:').split()
+    print(fio[0].capitalize(), fio[1][0].upper() + ".", fio[2][0].upper() + ".")
+
+def F2():
+    str = input("Строка: ")
+    print(len(str))
+    print(str*3)
+    print(str[0])
+    print(str[0:3])
+    print(str[len(str)-3::])
+    print(str[::-1])
+    print(str[1:-1])
+
+def F3():
+    str = input("Строка: ")
+    print(str[2])
+    print(str[-2])
+    print(str[:5:])
+    print(str[:-2:])
+    print(str[1::2])
+    print(str[::2])
+    print(str[::-1])
+    print(str[::-1][::2])
+
+def F4():
+    str = input("Строка: ")
+    print(len(str.split()))
+
+def F5():
+    AGCT = input("Введите цепочку ДНК: ")
+    A,G,C,T = 0,0,0,0
+    for sumbol in AGCT:
+        if sumbol == "А":
+            A += 1
+        elif sumbol == "Г":
+            G += 1
+        elif sumbol == 'Ц':
+            C += 1
+        else:
+            T += 1
+    print(f"Аденин - {A}\nГуанин - {G}\nЦитозин - {C}\nТимин - {T}")
+
+def F6():
+    str, sumbol = input("Строка: "), input("Символ: ")
+    strs = str.split(sumbol)
+    print(strs[0]+strs[-1])
+
+def F7():
+    str = input("Строка: ")
+    strs = str.split()
+
+    MaxLen = 0
+    for str in strs:
+        MaxLen = len(str) > MaxLen and len(str) or MaxLen
+    print(MaxLen)
+
+def F8():
+    str = input("Строка: ")
+    strs = str.split()
+
+    MaxLen, MaxStr = 0, ""
+    for str in strs:
+        if len(str) > MaxLen:
+            MaxLen = len(str)
+            MaxStr = str
+    print(MaxStr)
+
+def F9():
+    str1, str2 = input("Строка: "), input("Вторая строка: ")
+    print(str2.find(str1) != -1 and True or False)
+
+def F10():
+    str = input("Строка: ")
+    print(str.replace("1", "one"))
+
+def F11():
+    F6()
+
+def F12():
+    str = input("Строка: ")
+    print(str.replace("@", ""))
