@@ -1,0 +1,120 @@
+import enum
+import random
+from tokenize import Double
+
+def CreateList(nm, Type):
+    if not Type:
+        DoubleTrouble = []
+        for n in range(nm[0]):
+            DoubleTrouble.append([])
+            if n == 0:
+                for i in range(1, nm[1]+1): DoubleTrouble[n].append(i)
+            else:
+                for i in range(nm[1]*n+1,nm[1]*n+1+nm[1]): DoubleTrouble[n].append(i)
+        return DoubleTrouble
+    elif Type == "01":
+        DoubleTrouble = []
+        for i in range(nm[0]):
+            DoubleTrouble.append([])
+            for j in range(nm[1]):
+                DoubleTrouble[i].append(random.randint(0,1))
+        return DoubleTrouble
+
+def StrToNums():
+    return list(map(int, input("Введите кол-во строк и столбцов: ").split()))
+
+def F1():
+    nm = StrToNums()
+
+    DoubleTrouble = []
+    for i in range(nm[0]): DoubleTrouble.append([])
+
+    for i in range(3):
+        for j in range(i, 12, 3):
+            DoubleTrouble[i].append(j+1)
+
+    DoubleTrouble = DoubleTrouble[::-1]
+    print(DoubleTrouble)
+
+def F2():
+    nm = StrToNums()
+
+    DoubleTrouble = []
+    for i in range(nm[0]): DoubleTrouble.append([])
+
+    for i in range(nm[0]*nm[1], nm[0]*nm[1]-nm[0], -1):
+        for j in range(i, 0, -3):
+            DoubleTrouble[nm[1]*nm[0]-i].append(j)
+
+    print(DoubleTrouble)
+
+def F3():
+    nm = StrToNums()
+    Values = list(map(int, input().split()))
+
+    DoubleTrouble = [[0]*nm[1] for i in range(nm[0])]
+    i, j, di, dj = 0, 0, 0, 1
+
+    for v in Values:
+        DoubleTrouble[i][j] = v
+        if not (0 <= i+di < nm[0] and 0 <= j+dj < nm[1] and DoubleTrouble[i+di][j+dj] == 0):
+            di, dj = dj, -di
+        i, j = i+di, j+dj
+
+    print(Trouble)
+
+def F4():
+    nm = StrToNums()
+
+    DoubleTrouble = CreateList(nm, "01")
+
+    Max, Id = 0, 0
+    for i, Trouble in enumerate(DoubleTrouble):
+        Current = 0
+        for j in Trouble:
+            if j == 0: Current += 1
+
+        if Max < Current:
+            Max = Current
+            Id = i+1
+    print(f"ID {Id}, Free {Max}")
+
+def F5():
+    nm = StrToNums()
+    DoubleTrouble = CreateList(nm, "")
+
+    Result = 0
+
+    for i, Trouble in enumerate(DoubleTrouble):
+        if i == 0 or i+1 == len(DoubleTrouble):
+            for v in Trouble: Result += v
+        else:
+            Result += (Trouble[0] + Trouble[-1])
+    print(Result)
+
+def F6():
+    nm = StrToNums()
+    DoubleTrouble = CreateList(nm, "")
+
+    Rotated = []
+    for _ in range(nm[1]): Rotated.append([])
+
+    index = 0
+    for i in range(nm[0]-1,-1,-1):
+        for j, v in enumerate(DoubleTrouble[i]):
+            Rotated[j].append(v)
+        index += 1
+    print(Rotated)
+
+def F7():
+    nm = StrToNums()
+    DoubleTrouble = CreateList(nm, "")
+
+    Result = 0
+    for i,Trouble in enumerate(DoubleTrouble):
+        if i == 0:
+            for j in Trouble: Result += j
+        else:
+            Result += Trouble[0]
+            continue
+    print(Result)
